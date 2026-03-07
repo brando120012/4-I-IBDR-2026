@@ -1,0 +1,44 @@
+DESC detalle_horarios;
+DESC plantilla_detalle_horarios;
+DESC horarios;
+
+
+SELECT * FROM plantilla_detalle_horarios;
+SELECT * FROM horarios;
+-- Esta tabla debería estar vacía por ahora
+SELECT * FROM detalle_horarios;
+
+
+-- Nota: 'hora_salida' y 'hora_entrada' están definidos como DATE en tu esquema.
+INSERT INTO detalle_horarios (horario_id, hora_salida, hora_entrada, codigo_incapacidad)
+VALUES 
+(1, '2023-10-01', '2023-10-01', ''),
+(2, '2023-10-02', '2023-10-02', ''),
+(3, '2023-10-03', '2023-10-03', ''),
+(4, '2023-10-04', '2023-10-04', ''),
+(5, '2023-10-05', '2023-10-05', '');
+
+-- Verificamos la inserción
+SELECT * FROM detalle_horarios;
+
+
+CREATE TABLE usuarios (
+  usuario_id INT NOT NULL AUTO_INCREMENT,
+  nombre VARCHAR(50),
+  apellido VARCHAR(50),
+  departamento VARCHAR(50),
+  PRIMARY KEY (usuario_id)
+);
+
+
+INSERT INTO usuarios (nombre, apellido, departamento) VALUES 
+('Juan', 'Perez', 'Ventas'),
+('Maria', 'Gomez', 'Marketing'),
+('Carlos', 'Ruiz', 'IT'),
+('Ana', 'Lopez', 'Recursos Humanos'),
+('Pedro', 'Sanchez', 'Ventas'),
+('Laura', 'Diaz', 'Finanzas'),
+('Lodriguez', 'Hernandez', 'IT'),
+('Miguel', 'Torres', 'Logistica'),
+('Lucia', 'Ramirez', 'Marketing'),
+('David', 'Flores', 'Dire
