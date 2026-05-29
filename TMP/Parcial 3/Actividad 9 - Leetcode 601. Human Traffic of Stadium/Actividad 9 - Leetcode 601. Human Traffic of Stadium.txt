@@ -1,0 +1,24 @@
+WITH Filtrado AS (
+    -- Paso 1: Filtramos solo los días válidos y creamos un identificador de grupo
+    SELECT 
+        id, 
+        visit_date, 
+        people,
+        id - ROW_NUMBER() OVER (ORDER BY id) AS id_grupo
+    FROM stadium
+    WHERE people >= 100
+),
+ConteoGrupos AS (
+    -- Paso 2: Contamos cuántos registros hay en cada grupo consecutivo
+    SELECT 
+        id, 
+        visit_date, 
+        people,
+        COUNT(*) OVER (PARTITION BY id_grupo) AS total_en_grupo
+    FROM Filtrado
+)
+-- Paso 3: Mostramos solo los registros que pertenezcan a grupos de 3 o más
+SELECT id, visit_date, people
+FROM ConteoGrupos
+WHERE total_en_grupo >= 3
+ORDER BY visit_date;
